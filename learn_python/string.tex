@@ -1,0 +1,518 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+
+\geometry{a4paper, margin=2.5cm}
+
+% ========== DÉFINITION DES COULEURS ==========
+% Couleurs principales
+\definecolor{rouge}{RGB}{231, 76, 60}
+\definecolor{bleu}{RGB}{41, 128, 185}
+\definecolor{vert}{RGB}{39, 174, 96}
+\definecolor{orange}{RGB}{230, 126, 34}
+\definecolor{violet}{RGB}{142, 68, 173}
+\definecolor{rose}{RGB}{233, 30, 99}
+\definecolor{cyan}{RGB}{0, 188, 212}
+\definecolor{gris}{RGB}{149, 165, 166}
+\definecolor{grisclair}{RGB}{236, 240, 241}
+\definecolor{jaune}{RGB}{241, 196, 15}
+\definecolor{blanc}{RGB}{255, 255, 255}
+\definecolor{noir}{RGB}{0, 0, 0}
+
+% Couleurs pour le code (style VS Code)
+\definecolor{codecomment}{RGB}{0, 128, 0}      % Vert pour commentaires
+\definecolor{codekeyword}{RGB}{0, 0, 255}      % Bleu pour mots-clés
+\definecolor{codestring}{RGB}{163, 21, 21}     % Rouge pour chaînes
+\definecolor{codenumber}{RGB}{0, 0, 205}       % Bleu foncé pour nombres
+\definecolor{codefunction}{RGB}{128, 0, 128}   % Violet pour fonctions
+
+% Configuration du style pour les listings de code
+\lstset{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{codekeyword}\bfseries,
+	commentstyle=\color{codecomment}\itshape,
+	stringstyle=\color{codestring},
+	numberstyle=\tiny\color{gris},
+	showstringspaces=false,
+	breaklines=true,
+	frame=single,
+	framerule=1pt,
+	backgroundcolor=\color{grisclair},
+	tabsize=4,
+	numbers=left,
+	numbersep=5pt,
+	captionpos=b
+}
+
+% =============================================
+% COMMANDES PERSONNALISÉES POUR LE CODE COLORÉ
+% =============================================
+\newcommand{\code}[1]{\texttt{\color{bleu}#1}}
+\newcommand{\function}[1]{\texttt{\color{violet}#1}}
+\newcommand{\string}[1]{\texttt{\color{rouge}#1}}
+\newcommand{\keyword}[1]{\texttt{\color{bleu}\bfseries #1}}
+\newcommand{\number}[1]{\texttt{\color{orange}#1}}
+
+% =============================================
+
+\begin{document}
+	
+	% ========== TITRE COLORÉ ==========
+	\begin{center}
+		{\Huge \textbf{\color{bleu}Manipulation des Chaînes de Caractères en Python}}
+		\vspace{0.5cm}
+		
+		{\Large \color{violet}Guide Complet avec Exemples}
+		\vspace{0.5cm}
+		
+		{\color{gris}Document généré le \today}
+	\end{center}
+	
+	\vspace{1cm}
+	
+	% ========== SECTION 1 : RAPPEL ==========
+	\section*{\color{rouge}📌 RAPPEL : Les chaînes sont IMMUTABLES}
+	\begin{lstlisting}
+		s = "Bonjour Python"
+		# s[0] = "b"  # ❌ ERREUR ! On ne peut pas modifier directement
+	\end{lstlisting}
+	
+	% ========== SECTION 2 : CRÉATION ==========
+	\section*{\color{orange}1. CRÉATION ET CONCATÉNATION}
+	
+	\subsection*{\color{cyan}1.1 Concaténation (\texttt{+})}
+	\begin{lstlisting}
+		s1 = "Bonjour"
+		s2 = "Python"
+		resultat = s1 + " " + s2  # "Bonjour Python"
+		print(resultat)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}1.2 Répétition (\texttt{*})}
+	\begin{lstlisting}
+		s = "Ha" * 3  # "HaHaHa"
+		print(s)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}1.3 Joindre une liste (\texttt{join})}
+	\begin{lstlisting}
+		liste = ["Python", "est", "super"]
+		resultat = " ".join(liste)  # "Python est super"
+		print(resultat)
+		
+		# Séparateur personnalisé
+		resultat = ",".join(liste)  # "Python,est,super"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}1.4 F-strings (formatage moderne) ⭐}
+	\begin{lstlisting}
+		nom = "Alice"
+		age = 30
+		print(f"Bonjour {nom}, tu as {age} ans")  # "Bonjour Alice, tu as 30 ans"
+		
+		# Avec expressions
+		print(f"Dans 5 ans, tu auras {age + 5} ans")  # "Dans 5 ans, tu auras 35 ans"
+		
+		# Formatage des nombres
+		prix = 19.99
+		print(f"Prix : {prix:.2f} €")  # "Prix : 19.99 €"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}1.5 Formatage à l'ancienne (\texttt{.format})}
+	\begin{lstlisting}
+		print("Bonjour {}, tu as {} ans".format("Alice", 30))
+		print("Bonjour {nom}, tu as {age} ans".format(nom="Alice", age=30))
+	\end{lstlisting}
+	
+	% ========== SECTION 3 : ACCÈS ==========
+	\section*{\color{orange}2. ACCÈS ET RECHERCHE}
+	
+	\subsection*{\color{cyan}2.1 Accès par index}
+	\begin{lstlisting}
+		s = "Python"
+		print(s[0])    # 'P' (premier)
+		print(s[-1])   # 'n' (dernier)
+		print(s[-2])   # 'o' (avant-dernier)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}2.2 Slicing (tranches) ⭐}
+	\begin{lstlisting}
+		s = "Bonjour Python"
+		
+		# [debut:fin:pas]
+		print(s[0:7])      # "Bonjour" (de 0 à 6)
+		print(s[:7])       # "Bonjour" (jusqu'à 6)
+		print(s[8:])       # "Python" (de 8 à la fin)
+		print(s[::2])      # "Bnu yhn" (un caractère sur 2)
+		print(s[::-1])     # "nohtyP ruojnoB" (inversé)
+		print(s[8:14])     # "Python"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}2.3 Longueur (\texttt{len})}
+	\begin{lstlisting}
+		s = "Python"
+		print(len(s))  # 6
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}2.4 Vérifier si contient (\texttt{in} / \texttt{not in})}
+	\begin{lstlisting}
+		s = "Bonjour Python"
+		print("Python" in s)      # True
+		print("Java" in s)        # False
+		print("java" not in s)    # True (sensible à la casse)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}2.5 Trouver une position (\texttt{find} / \texttt{index})}
+	\begin{lstlisting}
+		s = "Bonjour Python Python"
+		
+		# find (retourne -1 si pas trouvé)
+		print(s.find("Python"))      # 8 (première occurrence)
+		print(s.find("Python", 10))  # 15 (à partir de l'index 10)
+		print(s.find("Java"))        # -1
+		
+		# index (leve une exception si pas trouve)
+		print(s.index("Python"))     # 8
+		# print(s.index("Java"))     # ValueError
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}2.6 Compter les occurrences (\texttt{count})}
+	\begin{lstlisting}
+		s = "Bonjour Python Python"
+		print(s.count("Python"))  # 2
+		print(s.count("o"))       # 3
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}2.7 Vérifier le début et la fin (\texttt{startswith} / \texttt{endswith})}
+	\begin{lstlisting}
+		s = "Bonjour Python"
+		print(s.startswith("Bon"))   # True
+		print(s.startswith("bon"))   # False (sensible à la casse)
+		print(s.endswith("thon"))    # True
+		print(s.endswith("py"))      # False
+	\end{lstlisting}
+	
+	% ========== SECTION 4 : MODIFICATION ==========
+	\section*{\color{orange}3. MODIFICATION (RETOURNE UNE NOUVELLE CHAÎNE)}
+	
+	\subsection*{\color{cyan}3.1 Mettre en majuscules/minuscules}
+	\begin{lstlisting}
+		s = "Bonjour Python"
+		
+		print(s.upper())          # "BONJOUR PYTHON"
+		print(s.lower())          # "bonjour python"
+		print(s.capitalize())     # "Bonjour python" (1ère lettre en majuscule)
+		print(s.title())          # "Bonjour Python" (chaque mot en majuscule)
+		print(s.swapcase())       # "bONJOUR pYTHON" (inverse la casse)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}3.2 Supprimer les espaces ⭐}
+	\begin{lstlisting}
+		s = "  Hello World  "
+		
+		print(s.strip())      # "Hello World" (début + fin)
+		print(s.lstrip())     # "Hello World  " (début seulement)
+		print(s.rstrip())     # "  Hello World" (fin seulement)
+		
+		# Supprimer d'autres caractères
+		s = "---Hello---"
+		print(s.strip("-"))   # "Hello"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}3.3 Remplacer (\texttt{replace})}
+	\begin{lstlisting}
+		s = "Bonjour Python"
+		print(s.replace("Python", "Java"))  # "Bonjour Java"
+		print(s.replace("o", "0"))          # "B0nj0ur Pyth0n"
+		
+		# Remplacer plusieurs fois
+		s = "aaabbbccc"
+		print(s.replace("b", "B", 2))  # "aaaBBbccc" (seulement 2 fois)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}3.4 Mettre en liste (\texttt{split}) ⭐}
+	\begin{lstlisting}
+		s = "Bonjour Python est super"
+		
+		# Couper par espaces
+		print(s.split())          # ['Bonjour', 'Python', 'est', 'super']
+		
+		# Couper par un séparateur personnalisé
+		s = "1,2,3,4,5"
+		print(s.split(","))       # ['1', '2', '3', '4', '5']
+		
+		# Limiter le nombre de coupes
+		print(s.split(",", 2))    # ['1', '2', '3,4,5'] (seulement 2 coupes)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}3.5 Partitioner (\texttt{partition})}
+	\begin{lstlisting}
+		s = "Bonjour-Python-2024"
+		print(s.partition("-"))   # ('Bonjour', '-', 'Python-2024')
+		print(s.rpartition("-"))  # ('Bonjour-Python', '-', '2024') (par la droite)
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}3.6 Remplir avec des espaces (\texttt{center}, \texttt{ljust}, \texttt{rjust}, \texttt{zfill})}
+	\begin{lstlisting}
+		s = "42"
+		
+		print(s.center(10))        # "    42    " (centré)
+		print(s.center(10, "-"))   # "----42----" (rempli de -)
+		
+		print(s.ljust(10))         # "42        " (à gauche)
+		print(s.rjust(10))         # "        42" (à droite)
+		
+		print(s.zfill(5))          # "00042" (remplit de zéros à gauche)
+	\end{lstlisting}
+	
+	% ========== SECTION 5 : VÉRIFICATION ==========
+	\section*{\color{orange}4. VÉRIFICATION DE CONTENU}
+	
+	\subsection*{\color{cyan}4.1 Vérifier les caractères}
+	\begin{lstlisting}
+		s = "123abc"
+		
+		print(s.isalnum())   # True (lettres ET chiffres)
+		print(s.isalpha())   # False (contient des chiffres)
+		print(s.isdigit())   # False (contient des lettres)
+		print(s.isnumeric()) # False (idem)
+		print(s.isdecimal()) # False
+		print(s.islower())   # True (toutes minuscules)
+		print(s.isupper())   # False
+		print(s.isspace())   # False (pas que des espaces)
+		print(s.istitle())   # False (pas "123Abc")
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}4.2 Vérifier pour l'affichage}
+	\begin{lstlisting}
+		s = "Bonjour\nPython"
+		print(s.isprintable())  # False (contient \n)
+		
+		s = "Hello"
+		print(s.isprintable())  # True
+	\end{lstlisting}
+	
+	% ========== SECTION 6 : TRANSFORMATIONS ==========
+	\section*{\color{orange}5. TRANSFORMATIONS AVANCÉES}
+	
+	\subsection*{\color{cyan}5.1 Inverser une chaîne ⭐}
+	\begin{lstlisting}
+		s = "Python"
+		print(s[::-1])  # "nohtyP"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}5.2 Enlever les accents}
+	\begin{lstlisting}
+		import unicodedata
+		
+		def enlever_accents(chaine):
+		return ''.join(c for c in unicodedata.normalize('NFD', chaine)
+		if unicodedata.category(c) != 'Mn')
+		
+		s = "éèêëàâôç"
+		print(enlever_accents(s))  # "eeeeaaoc"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}5.3 Extraire les mots}
+	\begin{lstlisting}
+		import re
+		s = "Bonjour, Python! Comment ça va?"
+		mots = re.findall(r'\w+', s)
+		print(mots)  # ['Bonjour', 'Python', 'Comment', 'ça', 'va']
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}5.4 Inverser l'ordre des mots}
+	\begin{lstlisting}
+		s = "Bonjour Python est super"
+		mots = s.split()
+		mots_inverses = mots[::-1]
+		resultat = " ".join(mots_inverses)
+		print(resultat)  # "super est Python Bonjour"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}5.5 Compter les mots}
+	\begin{lstlisting}
+		s = "Bonjour Python est super"
+		nb_mots = len(s.split())
+		print(nb_mots)  # 4
+	\end{lstlisting}
+	
+	% ========== SECTION 7 : EXEMPLES PRATIQUES ==========
+	\section*{\color{orange}6. EXEMPLES PRATIQUES COMPLETS}
+	
+	\subsection*{\color{cyan}Exemple 1 : Nettoyer un texte}
+	\begin{lstlisting}
+		texte = "  Bonjour, Python! C'est SUPER.  "
+		
+		# Nettoyage complet
+		propre = texte.strip()                    # Enlever les espaces
+		propre = propre.lower()                   # Tout en minuscules
+		propre = propre.replace("!", "")          # Enlever les ponctuations
+		propre = propre.replace(".", "")
+		propre = propre.replace(",", "")
+		
+		print(propre)  # "bonjour python cest super"
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}Exemple 2 : Extraire les données d'une chaîne formatée}
+	\begin{lstlisting}
+		donnees = "Alice,30,Paris,Boulanger"
+		
+		# Méthode 1 : split
+		infos = donnees.split(",")
+		print(f"Nom: {infos[0]}, Age: {infos[1]}, Ville: {infos[2]}, Metier: {infos[3]}")
+		
+		# Méthode 2 : unpacking
+		nom, age, ville, metier = donnees.split(",")
+		print(f"{nom} a {age} ans et vit à {ville}")
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}Exemple 3 : Valider un email (simple)}
+	\begin{lstlisting}
+		def email_valide(email):
+		return "@" in email and "." in email and email.count("@") == 1
+		
+		print(email_valide("alice@email.com"))  # True
+		print(email_valide("alice@email"))      # False
+	\end{lstlisting}
+	
+	\subsection*{\color{cyan}Exemple 4 : Transformer un nom en pseudo}
+	\begin{lstlisting}
+		def generer_pseudo(nom_prenom):
+		# "Jean Dupont" -> "jdupont"
+		parties = nom_prenom.lower().split()
+		if len(parties) >= 2:
+		return parties[0][0] + parties[1]  # jdupont
+		return parties[0]
+		
+		print(generer_pseudo("Jean Dupont"))  # "jdupont"
+	\end{lstlisting}
+	
+	% ========== SECTION 8 : TABLEAU RÉCAPITULATIF ==========
+	\newpage
+	\section*{\color{rouge}7. TABLEAU RÉCAPITULATIF COMPLET 📊}
+	
+	% Utilisation de longtable pour les tableaux longs
+	\begin{longtable}{|>{\ttfamily}m{2.5cm}|m{3cm}|>{\ttfamily}m{4cm}|m{2.5cm}|}
+		\hline
+		\rowcolor{bleu}
+		\color{white}\textbf{Fonction} & \color{white}\textbf{Description} & \color{white}\textbf{Exemple} & \color{white}\textbf{Résultat} \\
+		\hline
+		\endfirsthead
+		
+		\hline
+		\rowcolor{bleu}
+		\color{white}\textbf{Fonction} & \color{white}\textbf{Description} & \color{white}\textbf{Exemple} & \color{white}\textbf{Résultat} \\
+		\hline
+		\endhead
+		
+		% Alternance de couleurs
+		\rowcolor{grisclair}
+		+ & Concaténation & "a"+"b" & "ab" \\
+		\hline
+		* & Répétition & "a"*3 & "aaa" \\
+		\hline
+		\rowcolor{grisclair}
+		len() & Longueur & len("abc") & 3 \\
+		\hline
+		in & Contient & "b" in "abc" & True \\
+		\hline
+		\rowcolor{grisclair}
+		find() & Cherche position & "abc".find("b") & 1 \\
+		\hline
+		index() & Cherche position (erreur si absent) & "abc".index("b") & 1 \\
+		\hline
+		\rowcolor{grisclair}
+		count() & Compte occurrences & "aaa".count("a") & 3 \\
+		\hline
+		upper() & Majuscules & "abc".upper() & "ABC" \\
+		\hline
+		\rowcolor{grisclair}
+		lower() & Minuscules & "ABC".lower() & "abc" \\
+		\hline
+		capitalize() & 1ère en majuscule & "abc".capitalize() & "Abc" \\
+		\hline
+		\rowcolor{grisclair}
+		title() & Chaque mot en majuscule & "abc def".title() & "Abc Def" \\
+		\hline
+		swapcase() & Inverse la casse & "AbC".swapcase() & "aBc" \\
+		\hline
+		\rowcolor{grisclair}
+		strip() & Enlève les espaces début/fin & " a ".strip() & "a" \\
+		\hline
+		lstrip() & Enlève à gauche & " a ".lstrip() & "a " \\
+		\hline
+		\rowcolor{grisclair}
+		rstrip() & Enlève à droite & " a ".rstrip() & " a" \\
+		\hline
+		replace() & Remplace & "abc".replace("b","z") & "azc" \\
+		\hline
+		\rowcolor{grisclair}
+		split() & Coupe en liste & "a,b".split(",") & ['a','b'] \\
+		\hline
+		join() & Joint une liste & ",".join(['a','b']) & "a,b" \\
+		\hline
+		\rowcolor{grisclair}
+		startswith() & Commence par & "abc".startswith("a") & True \\
+		\hline
+		endswith() & Fini par & "abc".endswith("c") & True \\
+		\hline
+		\rowcolor{grisclair}
+		isalpha() & Que des lettres & "abc".isalpha() & True \\
+		\hline
+		isdigit() & Que des chiffres & "123".isdigit() & True \\
+		\hline
+		\rowcolor{grisclair}
+		isalnum() & Lettres ou chiffres & "a1".isalnum() & True \\
+		\hline
+		islower() & Toutes minuscules & "abc".islower() & True \\
+		\hline
+		\rowcolor{grisclair}
+		isupper() & Toutes majuscules & "ABC".isupper() & True \\
+		\hline
+		isspace() & Que des espaces & " ".isspace() & True \\
+		\hline
+		\rowcolor{grisclair}
+		istitle() & Chaque mot en majuscule & "Abc Def".istitle() & True \\
+		\hline
+		center() & Centrer & "a".center(5,"-") & "--a--" \\
+		\hline
+		\rowcolor{grisclair}
+		ljust() & Aligner à gauche & "a".ljust(3,"-") & "a--" \\
+		\hline
+		rjust() & Aligner à droite & "a".rjust(3,"-") & "--a" \\
+		\hline
+		\rowcolor{grisclair}
+		zfill() & Remplir de zéros & "42".zfill(5) & "00042" \\
+		\hline
+		partition() & Diviser en 3 & "a-b".partition("-") & ('a','-','b') \\
+		\hline
+	\end{longtable}
+	
+	% ========== SECTION FINALE ==========
+	\vspace{1cm}
+	\begin{center}
+		\fcolorbox{orange}{yellow}{
+			\begin{minipage}{0.8\textwidth}
+				\begin{center}
+					\textbf{\color{rouge}💡 ASTUCE :} 
+					\textcolor{bleu}{Les chaînes sont immutables.}
+					\textcolor{vert}{Toutes les méthodes retournent une NOUVELLE chaîne !}
+				\end{center}
+			\end{minipage}
+		}
+	\end{center}
+	
+\end{document}

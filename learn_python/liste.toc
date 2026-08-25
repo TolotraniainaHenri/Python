@@ -1,0 +1,52 @@
+\ttl@change@i {\@ne }{chapter}{0em}{\vspace {6pt}\bfseries \color {navy}}{\thecontentslabel \quad }{}{\hfill \contentspage }\relax 
+\ttl@change@v {chapter}{}{}{}\relax 
+\ttl@change@i {\@ne }{section}{2em}{\color {accent}}{\thecontentslabel \quad }{}{\hfill \contentspage }\relax 
+\ttl@change@v {section}{}{}{}\relax 
+\ttl@change@i {\@ne }{subsection}{4em}{\small \color {grey}}{\thecontentslabel \quad }{}{\hfill \contentspage }\relax 
+\ttl@change@v {subsection}{}{}{}\relax 
+\contentsline {chapter}{Avant-propos}{1}{chapter*.2}%
+\contentsline {chapter}{Introduction générale}{2}{chapter*.3}%
+\contentsline {chapter}{\numberline {1}Généralités sur la classification automatique}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Objectifs de la classification}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Notion de distance et de similarité}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Les grandes familles de méthodes}{5}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Les méthodes hiérarchiques}{5}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Les méthodes de partitionnement}{5}{subsection.1.3.2}%
+\contentsline {chapter}{\numberline {2}La Classification Ascendante Hiérarchique (CAH)}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Principe général de l'algorithme}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Les critères d'agrégation}{6}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Le lien simple (single linkage)}{6}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Le lien complet (complete linkage)}{6}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Le lien moyen (average linkage)}{7}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Le critère de Ward}{7}{subsection.2.2.4}%
+\contentsline {section}{\numberline {2.3}Le dendrogramme et le choix du nombre de classes}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Avantages et limites de la CAH}{7}{section.2.4}%
+\contentsline {chapter}{\numberline {3}La méthode des centres mobiles (k-means)}{8}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Principe de l'algorithme}{8}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Étapes de l'algorithme}{8}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Choix du nombre de classes $k$}{9}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}La méthode du coude (elbow method)}{9}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}L'indice de silhouette}{9}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Avantages et limites}{9}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Approche mixte : CAH et centres mobiles}{10}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Complémentarité des deux méthodes}{10}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Démarche de consolidation}{10}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Présentation des données}{12}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Contexte et description du jeu de données}{12}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Prétraitement des données}{12}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Mise en œuvre de la CAH sous R}{13}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Calcul de la matrice des distances}{13}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Construction du dendrogramme}{13}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Découpage de l'arbre}{14}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Interprétation des classes}{14}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Mise en œuvre des centres mobiles sous R}{15}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Application de \texttt {kmeans()}}{15}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Détermination du nombre optimal de classes}{15}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Visualisation des classes}{16}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Consolidation et comparaison des résultats}{17}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Croisement CAH / k-means}{17}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Profils des classes obtenues}{17}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Interprétation et recommandations}{18}{section.8.3}%
+\contentsline {chapter}{Conclusion générale}{19}{chapter*.4}%
+\contentsline {chapter}{Bibliographie}{20}{chapter*.5}%
+\contentsfinish 
