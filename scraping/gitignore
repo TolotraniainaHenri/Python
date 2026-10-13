@@ -1,0 +1,22 @@
+# Environnement virtuel
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Résultats et fichiers générés
+resultats.csv
+resultats.json
+erreur.png
+*.png
+
+# Sessions et identifiants (ne jamais publier)
+session.json
+.env
+
+# Éditeurs / système
+.vscode/
+.idea/
+.DS_Store
