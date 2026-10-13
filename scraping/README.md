@@ -1,8 +1,6 @@
-# Web Scraper Playwright
+# Scraping Python
 
 Un modèle de scraper en Python basé sur [Playwright](https://playwright.dev/python/), capable de récupérer des données sur des sites statiques comme sur des sites rendus en JavaScript. Il suffit de modifier une section de configuration pour l'adapter à un nouveau site.
-
-Ce projet fait partie du dépôt [TolotraniainaHenri/Python](https://github.com/TolotraniainaHenri/Python), dans le dossier `scraping/`.
 
 ## Fonctionnalités
 
@@ -21,8 +19,8 @@ Ce projet fait partie du dépôt [TolotraniainaHenri/Python](https://github.com/
 ## Installation
 
 ```bash
-git clone https://github.com/TolotraniainaHenri/Python.git
-cd Python/scraping
+git clone https://github.com/TolotraniainaHenri/scraping-python.git
+cd scraping-python
 
 python3 -m venv venv
 source venv/bin/activate        # Windows : venv\Scripts\activate
@@ -180,12 +178,11 @@ L'auteur de ce dépôt décline toute responsabilité pour l'usage qui en est fa
 ## Structure du projet
 
 ```
-Python/
-└── scraping/
-    ├── scraper.py          # Script principal
-    ├── requirements.txt    # Dépendances Python
-    ├── README.md           # Ce fichier
-    └── .gitignore
+scraping-python/
+├── scraper.py          # Script principal
+├── requirements.txt    # Dépendances Python
+├── README.md           # Ce fichier
+└── .gitignore
 ```
 
 ## Auteur
